@@ -4,6 +4,10 @@ import { z } from 'zod';
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']),
   DATABASE_URL: z.url(),
+  BETTER_AUTH_SECRET: z
+    .string()
+    .min(10, 'BETTER_AUTH_SECRET must be at least 10 characters long'),
+  BETTER_AUTH_URL: z.url('BETTER_AUTH_URL must be a valid URL'),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);

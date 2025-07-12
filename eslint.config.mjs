@@ -43,7 +43,7 @@ const eslintConfig = [
       // 🧹 Brisanje nekorišćenih importova i varijabli
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
-        'warn',
+        'error',
         {
           vars: 'all',
           varsIgnorePattern: '^_',
@@ -79,7 +79,7 @@ const eslintConfig = [
       'no-debugger': 'warn',
 
       // 🔧 Relaksacija nekih pravila za development
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-require-imports': 'warn',
     },
