@@ -1,5 +1,5 @@
 ---
-type: 'always_apply'
+applyTo: '**'
 ---
 
 GitHub Copilot: Pravila za korišćenje alata
