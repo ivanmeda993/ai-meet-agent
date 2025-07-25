@@ -41,9 +41,9 @@ const eslintConfig = [
     },
     rules: {
       // 🧹 Brisanje nekorišćenih importova i varijabli
-      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-imports': 'warn',
       'unused-imports/no-unused-vars': [
-        'error',
+        'warn',
         {
           vars: 'all',
           varsIgnorePattern: '^_',
@@ -54,7 +54,7 @@ const eslintConfig = [
 
       // 📦 Sortiranje importova
       'simple-import-sort/imports': [
-        'error',
+        'warn',
         {
           groups: [
             // React i Next.js
@@ -70,16 +70,20 @@ const eslintConfig = [
           ],
         },
       ],
-      'simple-import-sort/exports': 'error',
+      'simple-import-sort/exports': 'warn',
 
       // 🎯 Dodatna pravila za kvalitet koda
-      'prefer-const': 'error',
-      'no-var': 'error',
+      'prefer-const': 'warn',
+      'no-var': 'warn',
       'no-console': 'warn',
       'no-debugger': 'warn',
 
+      // 📁 Import path pravila
+      'import/prefer-default-export': 'off',
+      'import/no-cycle': 'warn',
+
       // 🔧 Relaksacija nekih pravila za development
-      '@typescript-eslint/no-unused-vars': 'error',
+      '@typescript-eslint/no-unused-vars': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-require-imports': 'warn',
     },

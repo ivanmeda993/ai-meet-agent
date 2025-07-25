@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { authClient } from '../lib/auth-client';
+import { authClient } from '@/lib/auth-client';
 export default function Home() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data, error } = await authClient.signUp.email(
+    const { data: _data, error: _error } = await authClient.signUp.email(
       {
         email, // user email address
         password, // user password -> min 8 characters by default
@@ -27,6 +27,7 @@ export default function Home() {
         },
         onError: (ctx) => {
           console.log('Error -> ', ctx);
+
           // display the error message
           alert(ctx.error.message);
         },

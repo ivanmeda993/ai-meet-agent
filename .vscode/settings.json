@@ -1,0 +1,13 @@
+{
+  "terminal.integrated.env.osx": {
+    "PATH": "/Users/ivan/.nvm/versions/node/v22.15.0/bin:${env:PATH}"
+  },
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh"
+}
