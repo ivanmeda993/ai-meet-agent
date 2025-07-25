@@ -23,6 +23,7 @@ const formSchema = z.object({
   password: z
     .string()
     .min(8, { message: 'Password must be at least 8 characters' }),
+  rememberMe: z.boolean().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
