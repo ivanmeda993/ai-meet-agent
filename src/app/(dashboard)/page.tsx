@@ -16,7 +16,7 @@ export default async function HomePage() {
     redirect('/sign-in');
   }
 
-  prefetch(trpc.agents.getMany.queryOptions());
+  prefetch(trpc.agents.getMany.queryOptions({}));
 
   return (
     <HydrateClient>

@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useTRPC } from '@/trpc/client';
 
+import { useAgentsFilters } from '../../hooks/use-agents-filters';
 import {
   agentsCreateSchema,
   type AgentsCreateSchemaInputs,
@@ -29,6 +30,7 @@ export const AgentForm = ({
   initialValues,
 }: AgentFormProps) => {
   const trpc = useTRPC();
+  const { apiFilters } = useAgentsFilters();
 
   const queryClient = useQueryClient();
 
@@ -36,7 +38,9 @@ export const AgentForm = ({
     trpc.agents.create.mutationOptions({
       onSuccess: async () => {
         const result = await queryClient.invalidateQueries(
-          trpc.agents.getMany.queryOptions(),
+          trpc.agents.getMany.queryOptions({
+            ...apiFilters,
+          }),
         );
 
         console.log('result: ', result);
@@ -53,7 +57,11 @@ export const AgentForm = ({
   const updateAgent = useMutation(
     trpc.agents.update.mutationOptions({
       onSuccess: async () => {
-        await queryClient.invalidateQueries(trpc.agents.getMany.queryOptions());
+        await queryClient.invalidateQueries(
+          trpc.agents.getMany.queryOptions({
+            ...apiFilters,
+          }),
+        );
         if (initialValues?.id) {
           await queryClient.invalidateQueries(
             trpc.agents.getOne.queryOptions({ id: initialValues.id }),
