@@ -2,7 +2,8 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
-import { AgentsView } from '@/modules/agents/ui/views /agents-view';
+import { AgentsListHeader } from '@/modules/agents/ui/components/agents-list-header';
+import { AgentsView } from '@/modules/agents/ui/views/agents-view';
 import { HydrateClient } from '@/trpc/hydrate-client';
 import { prefetch, trpc } from '@/trpc/server';
 
@@ -18,8 +19,11 @@ export default async function AgentsPage() {
   prefetch(trpc.agents.getMany.queryOptions());
 
   return (
-    <HydrateClient>
-      <AgentsView />
-    </HydrateClient>
+    <>
+      <AgentsListHeader />
+      <HydrateClient>
+        <AgentsView />
+      </HydrateClient>
+    </>
   );
 }

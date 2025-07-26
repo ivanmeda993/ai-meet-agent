@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import z from 'zod';
 
 import { FormInput } from '@/components/form-inputs/form-input';
 import { Alert, AlertTitle } from '@/components/ui/alert';
@@ -17,31 +16,23 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Form } from '@/components/ui/form';
 import { authClient } from '@/lib/auth-client';
 
-const formSchema = z.object({
-  email: z.email(),
-  password: z
-    .string()
-    .min(8, { message: 'Password must be at least 8 characters' }),
-  rememberMe: z.boolean().optional(),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import { signInSchema, type SignInSchemaInputs } from '../../auth-schema';
 
 export const SignInView = () => {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const form = useForm<FormValues>({
+  const form = useForm<SignInSchemaInputs>({
     mode: 'onBlur',
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: SignInSchemaInputs) => {
     setError(null);
     setPending(true);
 
@@ -100,13 +91,13 @@ export const SignInView = () => {
                   </p>
                 </div>
                 <div className='grid gap-3'>
-                  <FormInput<FormValues>
+                  <FormInput<SignInSchemaInputs>
                     name='email'
                     label='Email'
                     isRequired
                     placeholder='Enter your email'
                   />
-                  <FormInput<FormValues>
+                  <FormInput<SignInSchemaInputs>
                     name='password'
                     label='Password'
                     isRequired

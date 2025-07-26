@@ -2,7 +2,11 @@
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useState } from 'react';
-import { type FieldPath, type FieldValues, useFormContext } from 'react-hook-form';
+import {
+  type FieldPath,
+  type FieldValues,
+  useFormContext,
+} from 'react-hook-form';
 
 import {
   FormControl,

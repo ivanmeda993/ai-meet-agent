@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "bun run lint:format && next build",
     "start": "next start",
     "db:push": "drizzle-kit push",
     "lint": "next lint",
@@ -12,7 +12,7 @@
     "lint:fix": "next lint --fix",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
-    "lint:format": "npm run format:write && npm run lint:fix"
+    "lint:format": "bun run format:write && bun run lint:fix"
   },
   "dependencies": {
     "@dicebear/collection": "^9.2.3",

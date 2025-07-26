@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { z } from 'zod';
 
 import { FormInput } from '@/components/form-inputs/form-input';
 import { Alert, AlertTitle } from '@/components/ui/alert';
@@ -17,27 +16,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Form } from '@/components/ui/form';
 import { authClient } from '@/lib/auth-client';
 
-const formSchema = z
-  .object({
-    name: z.string().min(1, { message: 'Name is required' }),
-    email: z.string().email(),
-    password: z.string().min(1, { message: 'Password required' }),
-    confirmPassword: z.string().min(1, { message: 'Password is required' }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ['confirmPassword'],
-  });
-
-type FormValues = z.infer<typeof formSchema>;
+import { signUpSchema, type SignUpSchemaInputs } from '../../auth-schema';
 
 export const SignUpView = () => {
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<SignUpSchemaInputs>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -46,7 +33,7 @@ export const SignUpView = () => {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: SignUpSchemaInputs) => {
     setError(null);
     setPending(true);
 
@@ -104,7 +91,7 @@ export const SignUpView = () => {
                   </p>
                 </div>
                 <div className='grid gap-3'>
-                  <FormInput<FormValues>
+                  <FormInput<SignUpSchemaInputs>
                     name='name'
                     label='Name'
                     isRequired
@@ -112,7 +99,7 @@ export const SignUpView = () => {
                   />
                 </div>
                 <div className='grid gap-3'>
-                  <FormInput<FormValues>
+                  <FormInput<SignUpSchemaInputs>
                     name='email'
                     label='Email'
                     isRequired
@@ -120,7 +107,7 @@ export const SignUpView = () => {
                   />
                 </div>
                 <div className='grid gap-3'>
-                  <FormInput<FormValues>
+                  <FormInput<SignUpSchemaInputs>
                     name='password'
                     label='Password'
                     isRequired
@@ -129,7 +116,7 @@ export const SignUpView = () => {
                   />
                 </div>
                 <div className='grid gap-3'>
-                  <FormInput<FormValues>
+                  <FormInput<SignUpSchemaInputs>
                     name='confirmPassword'
                     label='Confirm Password'
                     isRequired
