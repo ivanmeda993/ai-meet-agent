@@ -1,9 +1,8 @@
-// eslint-disable-next-line simple-import-sort/imports
 import 'server-only'; // <-- ensure this file cannot be imported from the client
-import React, { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import React, { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { ErrorFallback } from '@/components/ui/error-fallback';
 import { LoadingFallback } from '@/components/ui/loading-fallback';

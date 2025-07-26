@@ -2,12 +2,11 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
-import { HomeView } from '@/modules/home/ui/views/home-view';
+import { AgentsView } from '@/modules/agents/ui/views /agents-view';
 import { HydrateClient } from '@/trpc/hydrate-client';
 import { prefetch, trpc } from '@/trpc/server';
 
-export default async function HomePage() {
-  // Check if the user is logged in
+export default async function AgentsPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -20,7 +19,7 @@ export default async function HomePage() {
 
   return (
     <HydrateClient>
-      <HomeView />
+      <AgentsView />
     </HydrateClient>
   );
 }
