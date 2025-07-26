@@ -40,14 +40,12 @@ AI must maintain this file in the `.ai` folder with current project information:
 
 ### Authentication (2024-07-05)
 
-**Decision**: NextAuth.js with JWT
-**Reasoning**: Quick setup, good TypeScript support, team familiar
-**Files**: `src/auth/`, `middleware.ts`
+**Decision**: NextAuth.js with JWT **Reasoning**: Quick setup, good TypeScript support, team
+familiar **Files**: `src/auth/`, `middleware.ts`
 
 ### Database Schema (2024-07-04)
 
-**Decision**: PostgreSQL with Drizzle ORM
-**Reasoning**: Better type safety than Prisma, performance
+**Decision**: PostgreSQL with Drizzle ORM **Reasoning**: Better type safety than Prisma, performance
 **Files**: `src/db/schema.ts`, `drizzle.config.ts`
 
 ## 📁 Project Structure
@@ -121,13 +119,10 @@ When asked about APIs, frameworks, or technologies:
 
 ### Before Every Response, AI Should Verify:
 
-✅ Checked/created `.ai` folder and project-info.md
-✅ Created task with detailed sub-tasks (never single tasks)
-✅ Used sequential-thinking for problem analysis
-✅ Referenced latest official documentation (context7)
-✅ Validated with expert insights (Tavily)
-✅ Found practical examples (GitHub)
-✅ Considered project history (`.ai/project-info.md`)
+✅ Checked/created `.ai` folder and project-info.md ✅ Created task with detailed sub-tasks (never
+single tasks) ✅ Used sequential-thinking for problem analysis ✅ Referenced latest official
+documentation (context7) ✅ Validated with expert insights (Tavily) ✅ Found practical examples
+(GitHub) ✅ Considered project history (`.ai/project-info.md`)
 
 ### Red Flags - When AI Needs to Use Tools:
 
@@ -147,4 +142,5 @@ When asked about APIs, frameworks, or technologies:
 4. **Document decisions** in `.ai/project-info.md`
 5. **Maintain consistency** with existing codebase patterns
 
-This ensures AI provides contextual, current, and project-aware assistance while maintaining consistent development practices!
+This ensures AI provides contextual, current, and project-aware assistance while maintaining
+consistent development practices!

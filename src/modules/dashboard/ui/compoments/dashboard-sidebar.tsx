@@ -1,9 +1,8 @@
 'use client';
+import { BotIcon, StarIcon, VideoIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-import { BotIcon, StarIcon, VideoIcon } from 'lucide-react';
 
 import { Separator } from '@/components/ui/separator';
 import {

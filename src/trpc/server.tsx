@@ -5,7 +5,7 @@ import { cache } from 'react';
 
 import {
   createTRPCOptionsProxy,
-  TRPCQueryOptions,
+  type TRPCQueryOptions,
 } from '@trpc/tanstack-react-query';
 
 import { createTRPCContext } from './init';

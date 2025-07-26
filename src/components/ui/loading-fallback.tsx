@@ -8,12 +8,16 @@ import { Skeleton } from '@/components/ui/skeleton';
  * A reusable loading fallback component for Suspense boundaries
  * Provides different loading states based on the context
  */
-export function LoadingFallback({ message = 'Loading...' }: { message?: string }) {
+export function LoadingFallback({
+  message = 'Loading...',
+}: {
+  message?: string;
+}) {
   return (
-    <div className="flex items-center justify-center p-8">
-      <div className="flex items-center gap-2">
-        <Loader2 className="h-5 w-5 animate-spin text-primary" />
-        <span className="text-muted-foreground">{message}</span>
+    <div className='flex items-center justify-center p-8'>
+      <div className='flex items-center gap-2'>
+        <Loader2 className='h-5 w-5 animate-spin text-primary' />
+        <span className='text-muted-foreground'>{message}</span>
       </div>
     </div>
   );
@@ -24,11 +28,11 @@ export function LoadingFallback({ message = 'Loading...' }: { message?: string }
  */
 export function SkeletonFallback() {
   return (
-    <div className="space-y-4 p-4">
-      <Skeleton className="h-8 w-3/4" />
-      <Skeleton className="h-4 w-full" />
-      <Skeleton className="h-4 w-5/6" />
-      <Skeleton className="h-4 w-4/5" />
+    <div className='space-y-4 p-4'>
+      <Skeleton className='h-8 w-3/4' />
+      <Skeleton className='h-4 w-full' />
+      <Skeleton className='h-4 w-5/6' />
+      <Skeleton className='h-4 w-4/5' />
     </div>
   );
 }
@@ -38,8 +42,8 @@ export function SkeletonFallback() {
  */
 export function SpinnerFallback() {
   return (
-    <div className="flex items-center justify-center p-2">
-      <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+    <div className='flex items-center justify-center p-2'>
+      <Loader2 className='h-4 w-4 animate-spin text-muted-foreground' />
     </div>
   );
 }
@@ -49,13 +53,13 @@ export function SpinnerFallback() {
  */
 export function CardLoadingFallback() {
   return (
-    <div className="rounded-lg border bg-card p-6">
-      <div className="space-y-4">
-        <Skeleton className="h-6 w-1/3" />
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-4/5" />
-          <Skeleton className="h-4 w-3/5" />
+    <div className='rounded-lg border bg-card p-6'>
+      <div className='space-y-4'>
+        <Skeleton className='h-6 w-1/3' />
+        <div className='space-y-2'>
+          <Skeleton className='h-4 w-full' />
+          <Skeleton className='h-4 w-4/5' />
+          <Skeleton className='h-4 w-3/5' />
         </div>
       </div>
     </div>

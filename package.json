@@ -8,10 +8,11 @@
     "start": "next start",
     "db:push": "drizzle-kit push",
     "lint": "next lint",
+    "lint:check": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "format:all": "npm run format && npm run lint:fix"
+    "format:write": "prettier --write .",
+    "lint:format": "npm run format:write && npm run lint:fix"
   },
   "dependencies": {
     "@dicebear/collection": "^9.2.3",

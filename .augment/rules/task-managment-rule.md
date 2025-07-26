@@ -29,8 +29,7 @@ Task Management Rules
 ```markdown
 # Task: Create User Profile Component
 
-**Created**: 2024-07-05
-**Status**: In Progress / Completed
+**Created**: 2024-07-05 **Status**: In Progress / Completed
 
 ## Sub-tasks:
 
@@ -160,18 +159,20 @@ User: "This component isn't rendering correctly"
 
 ### 1. Session-First Approach
 
-For any request:
-"Always check/create `.ai` folder first, create `.ai/tasks/` folder, load `.ai/project-info.md` for context, create detailed task with sub-tasks using sequential-thinking, save task file to `.ai/tasks/`, then implement following the task structure"
+For any request: "Always check/create `.ai` folder first, create `.ai/tasks/` folder, load
+`.ai/project-info.md` for context, create detailed task with sub-tasks using sequential-thinking,
+save task file to `.ai/tasks/`, then implement following the task structure"
 
 ### 2. Structured Implementation
 
-Follow task breakdown religiously:
-"Create task file in `.ai/tasks/`, mark completed sub-tasks in file, update progress, maintain logical sequence, document architectural decisions in `.ai/project-info.md`, and ask user about deleting completed task files"
+Follow task breakdown religiously: "Create task file in `.ai/tasks/`, mark completed sub-tasks in
+file, update progress, maintain logical sequence, document architectural decisions in
+`.ai/project-info.md`, and ask user about deleting completed task files"
 
 ### 3. Research Depth
 
-For important decisions:
-"Do comprehensive research using all available tools, present options with trade-offs, let user choose approach"
+For important decisions: "Do comprehensive research using all available tools, present options with
+trade-offs, let user choose approach"
 
 ## 🚨 Task Management Rules
 

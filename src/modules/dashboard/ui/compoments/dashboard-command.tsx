@@ -1,8 +1,7 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-import { useRouter } from 'next/navigation';
-
 // import { useQuery } from '@tanstack/react-query';
 import { CommandEmpty, CommandGroup } from 'cmdk';
+import { useRouter } from 'next/navigation';
+import { type Dispatch, type SetStateAction, useState } from 'react';
 
 import { GeneratedAvatar } from '@/components/generated-avatar';
 import {

@@ -1,14 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { OctagonAlertIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { OctagonAlertIcon } from 'lucide-react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { z } from 'zod';
 
 import { FormInput } from '@/components/form-inputs/form-input';

@@ -1,6 +1,5 @@
-import { useRouter } from 'next/navigation';
-
 import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { GeneratedAvatar } from '@/components/generated-avatar';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';

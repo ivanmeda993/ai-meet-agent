@@ -12,7 +12,8 @@ Available MCP Tools & When to Use Them
 
 ### Project Tools
 
-- **sequential-thinking**: Break down complex problems step-by-step, analyze logic flows, create systematic approaches
+- **sequential-thinking**: Break down complex problems step-by-step, analyze logic flows, create
+  systematic approaches
 - **project-info**: Store and recall project stack, architecture decisions, patterns
 
 ### Database Tools (if configured)
@@ -41,9 +42,8 @@ For debugging, errors, or complex implementation:
 - **Logic Flow**: Map out conditional logic and data transformations
 - **Error Resolution**: Systematically eliminate potential causes
 
-**Example:**
-User: "Fix this hydration error"
-AI: Uses sequential-thinking → analyzes step-by-step (client vs server rendering, component lifecycle, data flow) → provides systematic solution
+**Example:** User: "Fix this hydration error" AI: Uses sequential-thinking → analyzes step-by-step
+(client vs server rendering, component lifecycle, data flow) → provides systematic solution
 
 ## 🔧 Tool Combination Rules
 
@@ -65,7 +65,8 @@ AI: Uses sequential-thinking → analyzes step-by-step (client vs server renderi
 
 #### Research Mode
 
-"Research [topic] using Tavily for best practices, context7 for official docs, and GitHub for examples"
+"Research [topic] using Tavily for best practices, context7 for official docs, and GitHub for
+examples"
 
 #### Problem Solving
 
@@ -73,7 +74,8 @@ AI: Uses sequential-thinking → analyzes step-by-step (client vs server renderi
 
 #### Learning Mode
 
-"Use context7 for official docs, Tavily for expert insights, GitHub for real examples, explain with practical focus"
+"Use context7 for official docs, Tavily for expert insights, GitHub for real examples, explain with
+practical focus"
 
 ## 🎪 Advanced Tool Usage Examples
 
@@ -170,4 +172,5 @@ User: "How should I structure my API routes?"
 - Considered project-specific context and constraints
 - Provided actionable, current, and accurate guidance
 
-This ensures comprehensive, accurate, and contextually appropriate assistance using all available MCP tools effectively!
+This ensures comprehensive, accurate, and contextually appropriate assistance using all available
+MCP tools effectively!
