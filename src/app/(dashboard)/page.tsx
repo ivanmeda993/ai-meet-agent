@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import { HomeView } from '@/modules/home/ui/views/home-view';
+import { HydrateClient } from '@/trpc/hydrate-client';
+import { prefetch, trpc } from '@/trpc/server';
 
 export default async function HomePage() {
   // Check if the user is logged in
@@ -13,5 +15,12 @@ export default async function HomePage() {
   if (!session) {
     redirect('/sign-in');
   }
-  return <HomeView />;
+
+  prefetch(trpc.hello.queryOptions({ text: 'ivan' }));
+
+  return (
+    <HydrateClient>
+      <HomeView />
+    </HydrateClient>
+  );
 }
