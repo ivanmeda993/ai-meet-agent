@@ -1,5 +1,5 @@
 import { TRPCError } from '@trpc/server';
-import { and, count, desc, eq, getTableColumns, ilike } from 'drizzle-orm';
+import { and, count, desc, eq, getTableColumns, ilike, sql } from 'drizzle-orm';
 
 import { db } from '@/db';
 import { agents, meetings } from '@/db/schema';
@@ -46,35 +46,58 @@ export const agentsRouter = createTRPCRouter({
     .input(agentsGetManyInputSchema)
     .query(async ({ ctx, input }) => {
       const { search, page, pageSize } = input;
-      const data = await db
+
+      const whereCondition = and(
+        eq(agents.userId, ctx.auth.user.id),
+        search ? ilike(agents.name, `%${search}%`) : undefined,
+      );
+
+      const result = await db
         .select({
           ...getTableColumns(agents),
-          meetingCount: db.$count(meetings, eq(agents.id, meetings.agentId)),
+          meetingCount: sql<number>`(
+          select count(*)
+          from ${meetings}
+          where ${eq(meetings.agentId, agents.id)}
+        )`,
+          totalSearchCount: sql<number>`count(*) over()`,
+          totalCount: sql<number>`(
+          select count(*)
+          from ${agents}
+          where ${eq(agents.userId, ctx.auth.user.id)}
+        )`,
         })
         .from(agents)
-        .where(
-          and(
-            eq(agents.userId, ctx.auth.user.id),
-            search ? ilike(agents.name, `%${search}%`) : undefined,
-          ),
-        )
+        .where(whereCondition)
         .orderBy(desc(agents.createdAt), desc(agents.id))
         .limit(pageSize)
         .offset((page - 1) * pageSize);
 
-      const [total] = await db
-        .select({ count: count() })
-        .from(agents)
-        .where(
-          and(
-            eq(agents.userId, ctx.auth.user.id),
-            search ? ilike(agents.name, `%${search}%`) : undefined,
-          ),
-        );
+      // Ako nema rezultata, vraćamo prazan odgovor
+      if (result.length === 0) {
+        const [totalCount] = await db
+          .select({ count: count() })
+          .from(agents)
+          .where(eq(agents.userId, ctx.auth.user.id));
 
-      const totalPages = Math.ceil(total.count / pageSize);
+        return {
+          items: [],
+          total: totalCount.count,
+          totalPages: 0,
+          totalSearchCount: 0,
+        };
+      }
 
-      return { items: data, total: total.count, totalPages };
+      const totalSearchCount = result[0].totalSearchCount;
+      const totalCount = result[0].totalCount;
+      const totalPages = Math.ceil(totalSearchCount / pageSize);
+
+      return {
+        items: result.map(({ totalSearchCount, totalCount, ...item }) => item),
+        total: totalCount,
+        totalPages,
+        totalSearchCount,
+      };
     }),
   create: protectedProcedure
     .input(agentsCreateSchema)
