@@ -1,4 +1,5 @@
 import { authRequired } from '@/lib/auth-required';
+import { AgentIdView } from '@/modules/agents/ui/views/agent-id-view';
 import { HydrateClient } from '@/trpc/hydrate-client';
 import { prefetch, trpc } from '@/trpc/server';
 
@@ -21,8 +22,7 @@ const Page = async ({ params }: Props) => {
   );
   return (
     <HydrateClient>
-      test
-      {/* <AgentIdView agentId={agentId} /> */}
+      <AgentIdView agentId={agentId} />
     </HydrateClient>
   );
 };

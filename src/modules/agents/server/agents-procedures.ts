@@ -113,4 +113,24 @@ export const agentsRouter = createTRPCRouter({
 
       return updatedAgent;
     }),
+
+  remove: protectedProcedure
+    .input(getOneInputSchema)
+    .mutation(async ({ ctx, input }) => {
+      const [removedAgent] = await db
+        .delete(agents)
+        .where(
+          and(eq(agents.id, input.id), eq(agents.userId, ctx.auth.user.id)),
+        )
+        .returning();
+
+      if (!removedAgent) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: 'Agent not found',
+        });
+      }
+
+      return removedAgent;
+    }),
 });
