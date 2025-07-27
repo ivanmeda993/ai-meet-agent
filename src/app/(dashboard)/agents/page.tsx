@@ -1,8 +1,6 @@
-import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { type SearchParams } from 'nuqs';
 
-import { auth } from '@/lib/auth';
+import { authRequired } from '@/lib/auth-required';
 import { loadAgentsSearchParams } from '@/modules/agents/types/agent-params';
 import { AgentsListHeader } from '@/modules/agents/ui/components/agents-list-header';
 import { AgentsView } from '@/modules/agents/ui/views/agents-view';
@@ -16,13 +14,10 @@ interface AgentsPageProps {
 export default async function AgentsPage({ searchParams }: AgentsPageProps) {
   const filters = await loadAgentsSearchParams(searchParams);
 
-  const session = await auth.api.getSession({
-    headers: await headers(),
+  await authRequired({
+    rule: 'redirectIfNoSession',
+    redirectTo: '/sign-in',
   });
-
-  if (!session) {
-    redirect('/sign-in');
-  }
 
   prefetch(trpc.agents.getMany.queryOptions({ ...filters }));
 
