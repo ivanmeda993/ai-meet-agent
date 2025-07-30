@@ -1,5 +1,6 @@
 import { authRequired } from '@/lib/auth-required';
 import { loadMeetingsSearchParams } from '@/modules/meetings/types/meeting-params';
+import { MeetingsListHeader } from '@/modules/meetings/ui/components/meetings-list-header';
 import { MeetingsView } from '@/modules/meetings/ui/views/meetings-view';
 import { HydrateClient } from '@/trpc/hydrate-client';
 import { prefetch, trpc } from '@/trpc/server';
@@ -21,8 +22,11 @@ export default async function MeetingsPage({
   prefetch(trpc.meetings.getMany.queryOptions({ ...filters }));
 
   return (
-    <HydrateClient>
-      <MeetingsView />
-    </HydrateClient>
+    <>
+      <MeetingsListHeader />
+      <HydrateClient>
+        <MeetingsView />
+      </HydrateClient>
+    </>
   );
 }

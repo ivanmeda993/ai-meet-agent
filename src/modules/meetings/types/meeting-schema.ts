@@ -37,6 +37,10 @@ export const meetingsInsertSchema = z.object({
   agentId: z.string().min(1, { message: 'Agent is required' }),
 });
 
+export type MeetingInsertInputs = z.infer<typeof meetingsInsertSchema>;
+
 export const meetingsUpdateSchema = meetingsInsertSchema.extend({
   id: z.string().min(1, { message: 'Id is required' }),
 });
+
+export type MeetingUpdateInputs = z.infer<typeof meetingsUpdateSchema>;
