@@ -16,8 +16,8 @@ import { formatDuration } from '@/lib/utils';
 
 import { ScrollArea, ScrollBar } from '../../../../components/ui/scroll-area';
 import { type MeetingGetOne } from '../../types/meeting-types';
-// import { ChatProvider } from './chat-provider';
-// import { Transcript } from './transcript';
+import { ChatProvider } from './chat-provider';
+import { Transcript } from './transcript';
 
 interface Props {
   data: MeetingGetOne;
@@ -59,12 +59,10 @@ export const CompletedState = ({ data }: Props) => {
           </ScrollArea>
         </div>
         <TabsContent value='chat'>
-          chat
-          {/* <ChatProvider meetingId={data.id} meetingName={data.name} /> */}
+          <ChatProvider meetingId={data.id} meetingName={data.name} />
         </TabsContent>
         <TabsContent value='transcript'>
-          transcript
-          {/* <Transcript meetingId={data.id} /> */}
+          <Transcript meetingId={data.id} />
         </TabsContent>
         <TabsContent value='recording'>
           <div className='bg-white rounded-lg border px-4 py-5'>

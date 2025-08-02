@@ -16,6 +16,9 @@ export const ENV = createEnv({
     STREAM_VIDEO_SERVER_KEY: z
       .string()
       .min(1, 'STREAM_VIDEO_SERVER_KEY is required'),
+    STREAM_CHAT_SERVER_KEY: z
+      .string()
+      .min(1, 'STREAM_CHAT_SERVER_KEY is required'),
 
     OPENAI_API_KEY: z.string().min(1, 'OPENAI_API_KEY is required'),
   },
@@ -23,6 +26,9 @@ export const ENV = createEnv({
     NEXT_PUBLIC_STREAM_VIDEO_API_KEY: z
       .string()
       .min(1, 'NEXT_PUBLIC_APP_URL is required'),
+    NEXT_PUBLIC_STREAM_CHAT_API_KEY: z
+      .string()
+      .min(1, 'NEXT_PUBLIC_STREAM_CHAT_API_KEY is required'),
   },
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
@@ -36,6 +42,9 @@ export const ENV = createEnv({
     STREAM_VIDEO_SERVER_KEY: process.env.STREAM_VIDEO_SERVER_KEY,
     NEXT_PUBLIC_STREAM_VIDEO_API_KEY:
       process.env.NEXT_PUBLIC_STREAM_VIDEO_API_KEY,
+    STREAM_CHAT_SERVER_KEY: process.env.STREAM_CHAT_SERVER_KEY,
+    NEXT_PUBLIC_STREAM_CHAT_API_KEY:
+      process.env.NEXT_PUBLIC_STREAM_CHAT_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },
 });
