@@ -20,4 +20,13 @@ projektu.
 
 ## Decision Log
 
-- (Ovde se dokumentuju važne tehničke odluke i obrazloženja)
+### AI Agent Auto-Greeting (2025-01-02)
+
+**Decision**: Implement automatic greeting behavior for AI agents joining video calls
+**Implementation**:
+
+- Enhanced agent instructions to include greeting behavior
+- Added `sendUserMessageContent` trigger for initial introduction
+- Added event listener for new participant joins to acknowledge them **Files**:
+  `src/app/api/webhook/route.ts` **Reasoning**: Improves user experience by making AI agents more
+  welcoming and proactive

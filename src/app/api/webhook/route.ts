@@ -108,9 +108,34 @@ export async function POST(req: NextRequest) {
       agentUserId: existingAgent.id,
     });
 
+    // Configure the agent's session with enhanced instructions including greeting behavior
     realtimeClient.updateSession({
-      instructions: existingAgent.instructions,
+      instructions: `${existingAgent.instructions}
+
+IMPORTANT: When you first join the call, immediately introduce yourself by saying something like: "Hello everyone! I'm ${existingAgent.name}, your AI assistant for this meeting. I'm here to help with any questions or tasks you might have. How can I assist you today?"
+
+Always be proactive in greeting new participants and maintain a friendly, professional tone throughout the conversation.`,
       name: existingAgent.name,
+    });
+
+    // Send an initial greeting message to trigger the agent to introduce itself
+    realtimeClient.sendUserMessageContent([
+      {
+        type: 'input_text',
+        text: 'You have just joined the video call. Please introduce yourself to the participants.',
+      },
+    ]);
+
+    // Listen for participant events to greet new joiners
+    realtimeClient.on('call.session_participant_joined', (event: any) => {
+      console.log('New participant joined:', event.participant?.user_id);
+      // Send a message to acknowledge the new participant
+      realtimeClient.sendUserMessageContent([
+        {
+          type: 'input_text',
+          text: `A new participant has joined the call. Please acknowledge them and offer assistance.`,
+        },
+      ]);
     });
   } else if (eventType === 'call.session_participant_left') {
     const event = payload as CallSessionParticipantLeftEvent;
