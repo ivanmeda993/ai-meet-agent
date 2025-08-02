@@ -1,3 +1,5 @@
+import { type SearchParams } from 'nuqs';
+
 import { authRequired } from '@/lib/auth-required';
 import { loadMeetingsSearchParams } from '@/modules/meetings/types/meeting-params';
 import { MeetingsListHeader } from '@/modules/meetings/ui/components/meetings-list-header';
