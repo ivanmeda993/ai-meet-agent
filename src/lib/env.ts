@@ -16,6 +16,8 @@ export const ENV = createEnv({
     STREAM_VIDEO_SERVER_KEY: z
       .string()
       .min(1, 'STREAM_VIDEO_SERVER_KEY is required'),
+
+    OPENAI_API_KEY: z.string().min(1, 'OPENAI_API_KEY is required'),
   },
   client: {
     NEXT_PUBLIC_STREAM_VIDEO_API_KEY: z
@@ -34,5 +36,6 @@ export const ENV = createEnv({
     STREAM_VIDEO_SERVER_KEY: process.env.STREAM_VIDEO_SERVER_KEY,
     NEXT_PUBLIC_STREAM_VIDEO_API_KEY:
       process.env.NEXT_PUBLIC_STREAM_VIDEO_API_KEY,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },
 });

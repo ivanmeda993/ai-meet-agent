@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:webhook": "ngrok http --url=liberal-monitor-heavily.ngrok-free.app 3000",
     "build": "npm run lint:format && next build",
     "start": "next start",
     "db:push": "drizzle-kit push",
