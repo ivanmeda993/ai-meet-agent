@@ -13,6 +13,7 @@ import { agents, meetings } from '@/db/schema';
 import { generateAvatarUri } from '@/lib/avatar';
 import { ENV } from '@/lib/env';
 import { streamVideo } from '@/lib/stream-video';
+import { inngest } from '@/inngest/client';
 
 function verifySignatureWithSDK(body: string, signature: string): boolean {
   return streamVideo.verifyWebhook(body, signature);
@@ -177,13 +178,13 @@ Always be proactive in greeting new participants and maintain a friendly, profes
       return NextResponse.json({ error: 'Meeting not found' }, { status: 404 });
     }
 
-    // await inngest.send({
-    //   name: 'meetings/processing',
-    //   data: {
-    //     meetingId: updatedMeeting.id,
-    //     transcriptUrl: updatedMeeting.transcriptUrl,
-    //   },
-    // });
+    await inngest.send({
+      name: 'meetings/processing',
+      data: {
+        meetingId: updatedMeeting.id,
+        transcriptUrl: updatedMeeting.transcriptUrl,
+      },
+    });
   } else if (eventType === 'call.recording_ready') {
     const event = payload as CallRecordingReadyEvent;
     const meetingId = event.call_cid.split(':')[1];
